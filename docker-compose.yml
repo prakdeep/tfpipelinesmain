@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  terraform:
+    image: hashicorp/terraform:latest
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: /bin/sh -c "make init && make validate && make plan && make apply && docker-compose down"
